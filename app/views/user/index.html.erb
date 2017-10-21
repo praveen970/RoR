@@ -1,0 +1,36 @@
+
+
+
+<html >
+<head>
+  <title>PhotoSite</title>
+
+</head>
+<body>
+<div class="row" style="text-align: center">
+
+  <h1>PhotoSite UsersList</h1>
+  <h2>There are <%= @users_all.count %> Users</h2>
+
+</div>
+<div class="table-items">
+
+
+<table style="border: solid; font-family: 'Bell MT';background-color: #bdbdbd; font-size: larger">
+<tr >
+  <td style="width: 80px">User</td>
+  <td style="width: 100px">FirstName</td>
+  <td style="width: 100px">LastName</td>
+</tr>
+<% for user in @users_all %>
+
+              <tr style="height: 50px">
+                <td><%= user.id %></td>
+                <td><%=link_to "#{user.first_name}", "/photos/index/#{user.id}" %></td>
+                <td><%= user.last_name %></td>
+              </tr>
+<%end%>
+</table>
+</div>
+</body>
+</html>

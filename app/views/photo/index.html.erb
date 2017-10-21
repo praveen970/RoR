@@ -1,0 +1,38 @@
+
+<html >
+<head>
+  <title>PhotoSite</title>
+
+</head>
+<body>
+    <div class="row" style="text-align: center">
+      <h1><% params[:id] %></h1>
+
+
+        <h1><%= "#{@users_all.find(@parameter).first_name}"" " "#{@users_all.find(@parameter).last_name}" %></h1>
+
+    </div>
+
+        <% for images in @photos %>
+
+        <div class="item" style="border: solid; background-color: #e6e6e6">
+          <div class="image-box">
+            <p class="image" ><%= image_tag("/assets/#{images.file_name}",) %></p>
+          </div>
+          <div class="comment-box">
+            <p style="font-style: italic">Uploaded on: <%= images.date_time %></p>
+            <% for comments in @comments_all.where("photo_id=?",images.id) %>
+                <div class="comment" style="border: solid; font-family: 'Bell MT';background-color: #bdbdbd" >
+                  <p style="font-family: 'Bell MT' ">Commented By: <%=link_to "#{@users_all.find(comments.user_id).first_name}", "/photos/index/#{@users_all.find(comments.user_id).id}" %></p>
+                  <p>Text: <%=comments.comment_text %></p>
+                  <p>Commented on: <%=comments.date_time%></p>
+                </div>
+
+            <%end%>
+
+          </div>
+        </div>
+        <%end%>
+
+</body>
+</html>
